@@ -34,7 +34,7 @@ CFLAGS		= -Os -Wall -Wextra -Iinclude -fno-common -fno-builtin -DSTM32F1 -D$(HWC
 CPPFLAGS    = -Os -Wall -Wextra -Iinclude -I. -fno-common -DSTM32F1 -D$(HWCONFIG) \
 		 -ffunction-sections -fdata-sections -fno-builtin -fno-rtti -fno-exceptions -fno-unwind-tables -mcpu=cortex-m3 -mthumb
 LDSCRIPT	= $(BINARY).ld
-LDFLAGS         = -L$(TOOLCHAIN_DIR)/lib -T$(LDSCRIPT) -nostartfiles -Wl,--gc-sections,-Map,linker.map
+LDFLAGS         = -L$(TOOLCHAIN_DIR)/lib -L../bootloader/libopencm3/lib -T$(LDSCRIPT) -nostartfiles -Wl,--gc-sections,-Map,linker.map
 OBJS		= $(BINARY).o hwinit.o stm32_timsched.o params.o terminal.o terminal_prj.o \
            my_string.o digio.o sine_core.o my_fp.o fu.o inc_encoder.o printf.o anain.o \
            temp_meas.o param_save.o foc.o throttle.o errormessage.o stm32_can.o pwmgeneration.o

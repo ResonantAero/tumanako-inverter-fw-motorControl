@@ -223,12 +223,14 @@ void Send(uint32_t canId, uint8_t* data, uint32_t len)
 
 extern "C" void usb_lp_can_rx0_isr(void)
 {
-	uint32_t id, fmi;
+	uint32_t id;
+	uint8_t  fmi;
 	bool ext, rtr;
 	uint8_t length;
 	uint32_t data[2];
+	uint16_t timestamp;
 
-	can_receive(CAN1, 0, false, &id, &ext, &rtr, &fmi, &length, (uint8_t*)&data);
+	can_receive(CAN1, 0, false, &id, &ext, &rtr, &fmi, &length, (uint8_t*)&data,&timestamp);
 	can_fifo_release(CAN1, 0);
 
 	if (id == 0x601) //SDO request, nodeid=1

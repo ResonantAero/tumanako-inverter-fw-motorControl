@@ -32,11 +32,11 @@ CFLAGS		= -Os -Wall -Wextra -Iinclude -fno-common -fno-builtin \
 CPPFLAGS    = -Os -Wall -Wextra -Iinclude -I. -fno-common \
 		 -ffunction-sections -fdata-sections -fno-builtin -fno-rtti -fno-exceptions -fno-unwind-tables -mcpu=cortex-m3 -mthumb
 LDSCRIPT	= $(BINARY).ld
-LDFLAGS         = -L$(TOOLCHAIN_DIR)/lib -T$(LDSCRIPT) -nostartfiles -Wl,--gc-sections,-Map,linker.map
+LDFLAGS         = -L$(TOOLCHAIN_DIR)/lib -Llibopencm3/lib -T$(LDSCRIPT) -nostartfiles -Wl,--gc-sections,-Map,linker.map
 OBJS		= $(BINARY).o
 
 
-OPENOCD_BASE	= /usr
+OPENOCD_BASE	= /usr/share
 OPENOCD		= $(OPENOCD_BASE)/bin/openocd
 OPENOCD_SCRIPTS	= $(OPENOCD_BASE)/share/openocd/scripts
 OPENOCD_FLASHER	= $(OPENOCD_SCRIPTS)/interface/parport.cfg
